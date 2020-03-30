@@ -1,0 +1,18 @@
+$fb: 30px;
+$fp: 15px;
+$cl: #FFCC01;
+$tx: #1F373D;
+$ft: 'Libre Baskerville', sans-serif;
+$ff: 'Assistant', sans-serif;
+
+@import 'parts/00_mixins';
+@import 'parts/01_reset';
+@import 'parts/02_classes';
+@import 'parts/03_ui_kit';
+@import 'parts/04_apps';
+@import 'parts/05_plugins';
+@import 'parts/06_header';
+@import 'parts/07_footer';
+
+@import 'templates/00_tpl_parts';
+@import 'templates/01_front_page';
