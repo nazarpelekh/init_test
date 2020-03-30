@@ -1,17 +1,27 @@
 <?php get_header(); ?>
 
-<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<?php if($hero = get_field('hero')){ ?>
     <section class="top_panel">
-        <div class="top_panel_img container" style="<?php echo (has_post_thumbnail() ? image_src( get_post_thumbnail_id( $post->ID ), 'full', true ) : 'background-image: url('. theme('images/top_primary.jpg') .')'); ?>"></div>
+        <?php if($hero['image']) { ?>
+            <div class="top_panel_img container" style="background-image: url(<?php echo $hero['image'] ?>);"></div>
+        <?php } ?>
         <div class="top_panel_container container">
             <div class="scroll_down">
-                <span><?php the_field('scroll_down_text') ?></span>
+                <span><?php echo $hero['scroll_down_text']; ?></span>
                 <img src="<?php echo get_template_directory_uri() . '/images/arrow_down.jpg' ?>" alt="">
             </div>
-            <?php the_content(); ?>
+            <?php echo $hero['title'] ?>
+            <?php
+            $link = $hero['button'];
+            if($link) {
+                $link_url = $link['url'];
+                $link_title = $link['title'];
+                $link_target = $link['target'] ? $link['target'] : '_self'; ?>
+                <a href="<?php echo $link_url ?>" target="<?php echo esc_attr( $link_target ); ?>" class="button"><?php echo $link_title ?></a>
+            <?php } ?>
         </div>
     </section>
-<?php endwhile; endif; ?>
+<?php } ?>
 
 <section class="vehicle">
     <div class="container">
